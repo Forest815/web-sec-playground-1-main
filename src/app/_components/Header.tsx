@@ -1,0 +1,74 @@
+"use client";
+
+import { useAuth } from "@/app/_hooks/useAuth";
+import NextLink from "next/link";
+
+import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShieldAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { twMerge } from "tailwind-merge";
+import { AUTH } from "@/config/auth";
+
+export const Header: React.FC = () => {
+  const { userProfile, logout } = useAuth();
+  const router = useRouter();
+
+  return (
+    <header>
+      <div className="bg-slate-800 py-2">
+        <div
+          className={twMerge(
+            "mx-4 max-w-5xl md:mx-auto",
+            "flex items-center justify-between",
+            "text-lg font-bold text-white",
+          )}
+        >
+          <div>
+            <NextLink href="/">
+              <FontAwesomeIcon icon={faShieldAlt} className="mr-1.5" />
+              Secure Auth App
+            </NextLink>
+            <span className="ml-1 text-xs font-normal">
+              - Session Based Authentication
+            </span>
+          </div>
+          {userProfile ? (
+            <div className="ml-2 text-sm text-slate-400">
+              <div className="flex items-center gap-x-4">
+                <NextLink 
+                  href="/member/about" 
+                  className="text-slate-200 hover:text-white"
+                >
+                  マイページ
+                </NextLink>
+                <div className="text-slate-200">{userProfile.name}</div>
+                <div
+                  className={twMerge("cursor-pointer hover:text-white")}
+                  onClick={logout}
+                >
+                  ログアウト
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex gap-x-4 ml-2 text-sm text-slate-400">
+              <div
+                className={twMerge("cursor-pointer hover:text-white")}
+                onClick={() => router.push("/login")}
+              >
+                ログイン
+              </div>
+              <div
+                className={twMerge("cursor-pointer hover:text-white")}
+                onClick={() => router.push("/signup")}
+              >
+                新規登録
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+};
