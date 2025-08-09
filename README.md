@@ -2,7 +2,7 @@
 
 このプロジェクトは **Next.js** を使用した **セッションベース認証システム** の実装例です。セキュアな認証・認可機能と8つの追加セキュリティ機能を実装しています。
 
-![メインページ](docs/main-page.svg)
+![メインページ](item/main-page.png)
 
 ## 🚀 実装された機能
 
@@ -18,14 +18,14 @@
 - **仕様**: 5回連続失敗で30分間ロック
 - **実装箇所**: `src/app/api/login/route.ts`, `prisma/schema.prisma`
 
-![アカウントロック画面](docs/account-lock.svg)
+![アカウントロック画面](item/account-lock.png)
 
 #### 2. 💪 パスワード強度チェック
 - **機能概要**: リアルタイムでパスワードの強度を5段階で評価
 - **評価項目**: 長さ、大文字・小文字、数字、特殊文字の使用
 - **実装箇所**: `src/app/_utils/password.ts`, `src/app/signup/page.tsx`
 
-![パスワード強度チェック](docs/password-strength.svg)
+![パスワード強度チェック](item/password-strength.png)
 
 #### 3. 📧 メールアドレス重複確認
 - **機能概要**: 入力時にリアルタイムで重複をチェック
